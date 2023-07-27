@@ -69,5 +69,8 @@ MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\UsergroupListValue',
 			'services' => [ 'UserGroupManager' ]
 		],
+		'string' => [
+			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\StringValue'
+		]
 	];
 } );
