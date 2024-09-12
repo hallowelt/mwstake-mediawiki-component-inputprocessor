@@ -50,20 +50,24 @@ $paramters = [
 ];
 
 // Process input
-$runner = MediaWiki\MediaWikiServices::getInstance()->getService( 'MWStakeInputProcessor' );
-$runner->process( $inputDesc, $parameters );
-if ( $runner->hasErrors() ) {
-	$errors = $runner->getErrors();
-	// Do something with the errors
-}
-else {
-	$processedInput = $runner->getProcessedInput();
-	/*
-	 * $processedInput = [
+$runner = MediaWiki\MediaWikiServices::getInstance()->getService( 'MWStake.InputProcessor' );
+try {
+    $processed = $runner->process( $processors, $value );
+    print_r( $processed );
+    /*
+	 * [
 	 *     'source-namespaces' => [ 0, 12, 2, 4 ],
 	 *     'count' => 5,
 	 *     'label' => 'My label'
 	 * ]
 	 */
+} catch ( Exception $e ) {
+    $status = $runner->getStatus();
+    $errors = $status->getErrors();
+    foreach ( $errors as $error ) {
+        $msg = \Message::newFromKey( $error['message'] )->params( ...$error['params'] );
+        $errorText = $msg->plain();
+        // Display error
+    }
 }
 ```

@@ -3,62 +3,64 @@
 namespace MWStake\MediaWiki\Component\InputProcessor;
 
 use Exception;
+use InvalidArgumentException;
 use MediaWiki\HookContainer\HookContainer;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 class ProcessorFactory {
-	
+
 	/** @var array */
-	private $registry = [];
+	private array $registry;
 
 	/** @var ObjectFactory */
-	private $objectFacotry = null;
+	private ObjectFactory $objectFactory;
 
 	/** @var HookContainer */
-	private $hookContainer = null;
+	private HookContainer $hookContainer;
 
-	/** @var LoggerInterface */
-	private $logger = null;
-
+	/** @var bool */
+	private bool $initialized = false;
 
 	/**
 	 * @param array $registry
-	 * @param ObjectFactory $objectFacotry
+	 * @param ObjectFactory $objectFactory
 	 * @param HookContainer $hookContainer
-	 * @param LoggerInterface $logger
 	 */
-	public function __construct( $registry, $objectFacotry, $hookContainer, $logger ) {
+	public function __construct( array $registry, ObjectFactory $objectFactory, HookContainer $hookContainer ) {
 		$this->registry = $registry;
-		$this->objectFacotry = $objectFacotry;
+		$this->objectFactory = $objectFactory;
 		$this->hookContainer = $hookContainer;
-		$this->logger = $logger;
+	}
+
+	/**
+	 * @param string $name
+	 * @param array $data
+	 * @return IProcessor
+	 * @throws Exception
+	 */
+	public function createWithData( string $name, array $data ): IProcessor {
+		$processor = $this->create( $name );
+		$processor->initializeFromSpec( $data );
+		return $processor;
 	}
 
 	/**
 	 * @param string $type
 	 * @return IProcessor
+	 * @throws Exception
 	 */
-	public function getProcessor( $type ) {
+	public function create( string $type ): IProcessor {
 		$this->init();
-		if ( !isset( $this->registry[$type] ) ) {
-			throw new Exception( 'Unknown processor type: ' . $type );
+		$spec = $this->registry[$type] ?? null;
+		if ( !$spec ) {
+			throw new InvalidArgumentException( "inputprocessor-error-processor-not-registered" );
 		}
-
-		$instance = $this->objectFacotry->getObjectFromSpec( $this->registry[$type] );
-		if ( !$instance instanceof IProcessor ) {
-			throw new Exception( 'Processor must implement IProcessor' );
+		$object = $this->objectFactory->createObject( $spec );
+		if ( !$object instanceof IProcessor ) {
+			throw new InvalidArgumentException( "inputprocessor-error-invalid-processor-object" );
 		}
-		if ( $instance instanceof LoggerAwareInterface ) {
-			$instance->setLogger( $this->logger );
-		}
-		
-		return $instance;
+		return $object;
 	}
-
-	/** @var bool */
-	private $initialized = false;
 
 	private function init() {
 		if ( $this->initialized ) {

@@ -13,6 +13,8 @@ define( 'MWSTAKE_MEDIAWIKI_COMPONENT_INPUTPROCESSOR_VERSION', '1.0.0' );
 MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 ->register( 'inputprocessor', static function () {
 	$GLOBALS['wgServiceWiringFiles'][] = __DIR__ . '/includes/ServiceWiring.php';
+	$GLOBALS['wgMessagesDirs']['mwstake-component-inputprocessor'] = __DIR__ . '/i18n';
+
 	$GLOBALS['mwsgInputProcessorRegistry'] = [
 		'integer' => [
 			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\IntValue'

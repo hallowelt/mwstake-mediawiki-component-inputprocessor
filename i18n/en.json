@@ -1,0 +1,7 @@
+{
+	"inputprocessor-error-processor-not-registered": "Processor type \"$1\" not registered",
+	"inputprocessor-error-invalid-processor-object": "Processor type \"$1\" not instance of IProcessor",
+	"inputprocessor-error-value-required": "Value for \"$1\" is required",
+	"inputprocessor-error-int-not-number": "Value \"$2\" for \"$1\" is not a valid integer",
+	"inputprocessor-error-int-out-of-range": "Value \"$2\" for \"$1\" is out of range"
+}

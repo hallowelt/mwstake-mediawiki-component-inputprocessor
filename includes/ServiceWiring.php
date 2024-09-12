@@ -3,22 +3,21 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MWStake\MediaWiki\Component\InputProcessor\ProcessorFactory;
+use MWStake\MediaWiki\Component\InputProcessor\Runner;
 
 return [
-	'MWStakeInputProcessorFactory' => static function ( MediaWikiServices $services ) {
-		$logger = LoggerFactory::getInstance( 'mwstake-inputprocessor' );
+	'MWStake.InputProcessor.Factory' => static function ( MediaWikiServices $services ) {
 		$specRegistry = $GLOBALS['mwsgInputProcessorRegistry'] ?? [];
 		return new ProcessorFactory(
 			$specRegistry,
 			$services->getObjectFactory(),
-			$services->getHookContainer(),
-			$logger
+			$services->getHookContainer()
 		);
 	},
-	'MWStakeInputProcessorRunner' => static function ( MediaWikiServices $services ) {
+	'MWStake.InputProcessor' => static function ( MediaWikiServices $services ) {
 		$logger = LoggerFactory::getInstance( 'mwstake-inputprocessor' );
 		return new Runner(
-			$services->get( 'MWStakeInputProcessorFactory' ),
+			$services->get( 'MWStake.InputProcessor.Factory' ),
 			$logger
 		);
 	},
