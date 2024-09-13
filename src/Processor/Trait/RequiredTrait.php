@@ -7,7 +7,7 @@ use StatusValue;
 trait RequiredTrait {
 
 	/** @var bool */
-	protected bool $required;
+	protected bool $required = false;
 
 	/**
 	 * @param bool $required
@@ -23,8 +23,8 @@ trait RequiredTrait {
 	 * @param string $fieldKey
 	 * @return StatusValue
 	 */
-	protected function checkRequired( ?string $value, string $fieldKey ): StatusValue {
-		if ( $value === null && $this->required ) {
+	protected function checkRequired( mixed $value, string $fieldKey ): StatusValue {
+		if ( $this->required && ( $value === null || $value === '' ) ) {
 			return StatusValue::newFatal( 'inputprocessor-error-value-required', $fieldKey );
 		}
 		return StatusValue::newGood();

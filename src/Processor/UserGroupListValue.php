@@ -4,6 +4,6 @@ namespace MWStake\MediaWiki\Component\InputProcessor\Processor;
 
 use MWStake\MediaWiki\Component\InputProcessor\Processor\Trait\ListSplitterTrait;
 
-class IntListValue extends IntValue {
+class UserGroupListValue extends UserGroupValue {
 	use ListSplitterTrait;
 }

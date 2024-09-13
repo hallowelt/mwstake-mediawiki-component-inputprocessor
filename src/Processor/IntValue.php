@@ -44,7 +44,7 @@ class IntValue extends GenericProcessor {
 	/**
 	 * @inheritDoc
 	 */
-	public function process( ?string $value, string $fieldKey ): StatusValue {
+	public function process( mixed $value, string $fieldKey ): StatusValue {
 		$parentStatus = parent::process( $value, $fieldKey );
 		if ( !$parentStatus->isGood() ) {
 			return $parentStatus;

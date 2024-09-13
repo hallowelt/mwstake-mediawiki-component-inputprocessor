@@ -2,6 +2,8 @@
 
 namespace MWStake\MediaWiki\Component\InputProcessor\Processor\Trait;
 
+use StatusValue;
+
 trait ListSplitterTrait {
 
 	/** @var string|null */
@@ -32,7 +34,41 @@ trait ListSplitterTrait {
 		// Remove empty parts
 		$parts = array_filter( $parts, 'strlen' );
 		// Trim parts
-		$parts = array_map( 'trim', $parts );
-		return $parts;
+		return array_map( 'trim', $parts );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function initializeFromSpec( array $spec ): static {
+		parent::initializeFromSpec( $spec );
+		$this->setListSeparator( $spec['separator'] ?? null );
+		return $this;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function process( mixed $value, string $fieldKey ): StatusValue {
+		$required = $this->checkRequired( $value, $fieldKey );
+		if ( !$required->isGood() ) {
+			return $required;
+		}
+		$values = $this->splitList( $value );
+		$status = StatusValue::newGood();
+		$processed = [];
+		foreach ( $values as $value ) {
+			$parentStatus = parent::process( $value, $fieldKey );
+			if ( !$parentStatus->isGood() ) {
+				$status->setOK( false );
+				$status->merge( $parentStatus );
+				continue;
+			}
+			$processed[] = $parentStatus->getValue();
+		}
+		if ( $status->isGood() ) {
+			$status->setResult( true, $processed );
+		}
+		return $status;
 	}
 }

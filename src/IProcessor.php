@@ -8,11 +8,11 @@ interface IProcessor {
 
 	/**
 	 *
-	 * @param string|null $value
+	 * @param mixed $value
 	 * @param string $fieldKey
 	 * @return StatusValue
 	 */
-	public function process( ?string $value, string $fieldKey ): StatusValue;
+	public function process( mixed $value, string $fieldKey ): StatusValue;
 
 	/**
 	 * Set required attributes based on the array-data provided

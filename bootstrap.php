@@ -17,62 +17,62 @@ MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 
 	$GLOBALS['mwsgInputProcessorRegistry'] = [
 		'integer' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\IntValue'
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\IntValue'
 		],
 		'integer-list' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\IntListValue'
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\IntListValue'
 		],
 		'boolean' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\BoolValue'
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\BoolValue'
 		],
 		'keyword' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\KeywordValue'
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\KeywordValue'
 		],
 		'keyword-list' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\KeywordListValue'
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\KeywordListValue'
 		],
 		'title' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\TitleValue',
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\TitleValue',
 			'services' => [ 'TitleFactory', 'PermissionManager' ]
 		],
 		'title-list' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\TitleListValue',
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\TitleListValue',
 			'services' => [ 'TitleFactory', 'PermissionManager' ]
 		],
 		'namespace' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\NamespaceValue',
-			'services' => [ 'NamespaceInfo', 'PermissionManager' ]
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\NamespaceValue',
+			'services' => [ 'NamespaceInfo', 'ContentLanguage' ]
 		],
 		'namespace-list' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\NamespaceListValue',
-			'services' => [ 'NamespaceInfo', 'PermissionManager' ]
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\NamespaceListValue',
+			'services' => [ 'NamespaceInfo', 'ContentLanguage' ]
 		],
 		'category' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\CategoryValue',
-			'services' => [ 'LoadBalancer', 'TitleFactory' ]
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\CategoryValue',
+			'services' => [ 'TitleFactory', 'PermissionManager', 'DBLoadBalancer' ]
 		],
 		'category-list' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\CategoryListValue',
-			'services' => [ 'LoadBalancer', 'TitleFactory' ]
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\CategoryListValue',
+			'services' => [ 'TitleFactory', 'PermissionManager', 'DBLoadBalancer' ]
 		],
 		'username' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\UsernameValue',
-			'services' => [ 'UserFactory', 'PermissionManager', 'NamespaceInfo' ]
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\UsernameValue',
+			'services' => [ 'UserFactory' ]
 		],
 		'username-list' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\UsernameListValue',
-			'services' => [ 'UserFactory', 'PermissionManager', 'NamespaceInfo' ]
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\UsernameListValue',
+			'services' => [ 'UserFactory' ]
 		],
 		'usergroup' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\UsergroupValue',
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\UserGroupValue',
 			'services' => [ 'UserGroupManager' ]
 		],
 		'usergroup-list' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\UsergroupListValue',
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\UserGroupListValue',
 			'services' => [ 'UserGroupManager' ]
 		],
 		'string' => [
-			'class' => 'MWStake\\MediaWiki\\Component\\InputProcessor\\StringValue'
+			'class' => '\\MWStake\\MediaWiki\\Component\\InputProcessor\\Processor\\StringValue'
 		]
 	];
 } );

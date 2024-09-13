@@ -11,7 +11,7 @@ class GenericProcessor implements IProcessor {
 	/**
 	 * @inheritDoc
 	 */
-	public function process( ?string $value, string $fieldKey ): StatusValue {
+	public function process( mixed $value, string $fieldKey ): StatusValue {
 		$required = $this->checkRequired( $value, $fieldKey );
 		if ( !$required->isGood() ) {
 			return $required;

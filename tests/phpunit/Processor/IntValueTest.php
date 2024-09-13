@@ -7,7 +7,7 @@ use MWStake\MediaWiki\Component\InputProcessor\Processor\IntValue;
 
 class IntValueTest extends ProcessorTestBase {
 
-	protected function getProcessor(): IProcessor {
+	protected function getProcessor( mixed $input ): IProcessor {
 		return new IntValue();
 	}
 
@@ -30,6 +30,16 @@ class IntValueTest extends ProcessorTestBase {
 					'type' => 'error',
 					'message' => 'inputprocessor-error-int-out-of-range',
 					'params' => [ 'test', 66 ]
+				],
+				'expectException' => true
+			],
+			'nan' => [
+				'input' => 'dummy',
+				'options' => [ 'min' => 0, 'max' => 9 ],
+				'expected' => [
+					'type' => 'error',
+					'message' => 'inputprocessor-error-int-not-number',
+					'params' => [ 'test', 'dummy' ]
 				],
 				'expectException' => true
 			]

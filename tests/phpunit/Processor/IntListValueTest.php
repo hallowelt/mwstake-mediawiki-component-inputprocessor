@@ -7,7 +7,7 @@ use MWStake\MediaWiki\Component\InputProcessor\Processor\IntListValue;
 
 class IntListValueTest extends ProcessorTestBase {
 
-	protected function getProcessor(): IProcessor {
+	protected function getProcessor( mixed $input ): IProcessor {
 		return new IntListValue();
 	}
 
