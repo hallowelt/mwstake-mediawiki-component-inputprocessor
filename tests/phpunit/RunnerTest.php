@@ -20,7 +20,7 @@ class RunnerTest extends TestCase {
 	 * @covers \MWStake\MediaWiki\Component\InputProcessor\Runner::process
 	 * @dataProvider provideData
 	 */
-	public function testRun( array $processors, array $value, array $expected, bool $exception = false ) {
+	public function testRun( array $processors, array $value, array $expected, bool $fatal = false ) {
 		$objectFactory = $this->createMock( ObjectFactory::class );
 		$objectFactory->method( 'createObject' )->willReturnCallback( static function ( $spec ) {
 			if ( is_array( $spec ) && $spec['class'] === IntValue::class ) {
@@ -34,15 +34,13 @@ class RunnerTest extends TestCase {
 		$logger = $this->createMock( LoggerInterface::class );
 
 		$runner = new Runner( $processorFactory, $logger );
-		try {
-			$processed = $runner->process( $processors, $value );
-			$this->assertSame( $expected, $processed );
-		} catch ( Exception $e ) {
-			$this->assertTrue( $exception );
-			$status = $runner->getStatus();
-			$this->assertTrue( $status instanceof StatusValue && !$status->isOK() );
-			$errors = $status->getErrors();
-			$this->assertSame( $expected, $errors );
+		$status = $runner->process( $processors, $value );
+		$this->assertInstanceOf( StatusValue::class, $status );
+		if ( $fatal ) {
+			$this->assertTrue( !$status->isOK() );
+		} else {
+			$this->assertTrue( $status->isOK() );
+			$this->assertSame( $expected, $status->getValue() );
 		}
 	}
 
@@ -93,7 +91,7 @@ class RunnerTest extends TestCase {
 						'params' => [ 'bar' ]
 					]
 				],
-				'exception' => true
+				'fatal' => true
 			]
 		];
 	}

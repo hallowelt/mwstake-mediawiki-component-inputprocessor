@@ -118,9 +118,9 @@ $input = [
 
 // Process input
 $runner = MediaWiki\MediaWikiServices::getInstance()->getService( 'MWStake.InputProcessor' );
-try {
-    $processed = $runner->process( $processors, $input );
-    print_r( $processed );
+$status = $runner->process( $processors, $input );
+if ( $status->isGood() ) {
+    print_r( $status->getValue() );
     /*
 	 * [
 	 *     'source-namespaces' => [ 0, 12, 2, 1204 ],
@@ -128,8 +128,7 @@ try {
 	 *     'label' => 'My label'
 	 * ]
 	 */
-} catch ( Exception $e ) {
-    $status = $runner->getStatus();
+} else {
     $errors = $status->getErrors();
     foreach ( $errors as $error ) {
         $msg = \Message::newFromKey( $error['message'] )->params( ...$error['params'] );

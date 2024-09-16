@@ -15,9 +15,6 @@ class Runner {
 	/** @var LoggerInterface */
 	private $logger;
 
-	/** @var StatusValue|null */
-	private $status = null;
-
 	/**
 	 * @param ProcessorFactory $processorFactory
 	 * @param LoggerInterface $logger
@@ -30,27 +27,27 @@ class Runner {
 	/**
 	 * @param array $processors
 	 * @param array $inputData
-	 * @return array
+	 * @return StatusValue
 	 * @throws Exception
 	 */
-	public function process( array $processors, array $inputData ): array {
+	public function process( array $processors, array $inputData ): StatusValue {
 		$output = [];
 
-		$this->status = StatusValue::newGood();
+		$globalStatus = StatusValue::newGood();
 		foreach ( $processors as $key => $processor ) {
 			if ( is_array( $processor ) ) {
 				try {
 					$processor = $this->processorFactory->createWithData( $processor['type'] ?? '', $processor );
 				} catch ( Throwable $ex ) {
-					$this->status->setOK( false );
-					$this->status->error( $ex->getMessage(), $key );
+					$globalStatus->setOK( false );
+					$globalStatus->error( $ex->getMessage(), $key );
 					continue;
 				}
 
 			}
 			if ( !$processor instanceof IProcessor ) {
-				$this->status->setOK( false );
-				$this->status->error( 'inputprocessor-error-invalid-processor-object', $key );
+				$globalStatus->setOK( false );
+				$globalStatus->error( 'inputprocessor-error-invalid-processor-object', $key );
 				continue;
 			}
 			$value = $inputData[$key] ?? null;
@@ -59,20 +56,13 @@ class Runner {
 				$output[$key] = $status->getValue();
 			} else {
 				$this->logger->error( "Error processing input $key: " . $status->getValue() );
-				$this->status->setOK( false );
-				$this->status->merge( $status );
+				$globalStatus->setOK( false );
+				$globalStatus->merge( $status );
 			}
 		}
-		if ( !$this->status->isOK() ) {
-			throw new Exception( 'Error processing input' );
+		if ( !$globalStatus->isOK() ) {
+			return $globalStatus;
 		}
-		return $output;
-	}
-
-	/**
-	 * @return StatusValue|null
-	 */
-	public function getStatus(): ?StatusValue {
-		return $this->status;
+		return StatusValue::newGood( $output );
 	}
 }
