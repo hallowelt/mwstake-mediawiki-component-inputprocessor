@@ -17,6 +17,7 @@ class KeywordValue extends GenericProcessor {
 	public function initializeFromSpec( array $spec ): static {
 		parent::initializeFromSpec( $spec );
 		$this->setKeywords( $spec['keywords'] ?? [] );
+		$this->setDefaultValue( $spec['default'] ?? [] );
 		return $this;
 	}
 
@@ -39,6 +40,9 @@ class KeywordValue extends GenericProcessor {
 		$parentStatus = parent::process( $value, $fieldKey );
 		if ( !$parentStatus->isGood() ) {
 			return $parentStatus;
+		}
+		if ( !$this->isRequired() && $value === null ) {
+			return StatusValue::newGood( $this->getDefaultValue() );
 		}
 		if ( !array_key_exists( mb_strtolower( $value ), $this->keywords ) ) {
 			return StatusValue::newFatal( 'inputprocessor-error-keyword-not-keyword', $fieldKey, $value );

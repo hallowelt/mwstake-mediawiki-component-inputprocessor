@@ -24,6 +24,7 @@ class GenericProcessor implements IProcessor {
 	 */
 	public function initializeFromSpec( array $spec ): static {
 		$this->setRequired( $spec['required'] ?? false );
+		$this->setDefaultValue( $spec['default'] ?? null );
 		return $this;
 	}
 }

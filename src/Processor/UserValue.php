@@ -47,6 +47,9 @@ class UserValue extends StringValue {
 		if ( !$parentStatus->isGood() ) {
 			return $parentStatus;
 		}
+		if ( !$this->isRequired() && $value === null ) {
+			return StatusValue::newGood( $this->getDefaultValue() );
+		}
 		$value = $parentStatus->getValue();
 		$user = $this->userFactory->newFromName( $value );
 		if ( !$user ) {

@@ -94,6 +94,9 @@ class TitleValue extends GenericProcessor {
 		if ( !$parentStatus->isGood() ) {
 			return $parentStatus;
 		}
+		if ( !$this->isRequired() && ( $value === null ) ) {
+			return StatusValue::newGood( $this->getDefaultValue() );
+		}
 		$title = $this->getTitle( $value );
 		if ( !$title ) {
 			return StatusValue::newFatal( 'inputprocessor-error-title-invalid', $fieldKey, $value );

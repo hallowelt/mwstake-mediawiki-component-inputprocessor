@@ -54,6 +54,9 @@ trait ListSplitterTrait {
 		if ( !$required->isGood() ) {
 			return $required;
 		}
+		if ( !$this->isRequired() && $value === null ) {
+			return StatusValue::newGood( $this->getDefaultValue() ?? [] );
+		}
 		$values = $this->splitList( $value );
 		$status = StatusValue::newGood();
 		$processed = [];

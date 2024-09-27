@@ -7,6 +7,12 @@ use StatusValue;
 
 class StringValue extends GenericProcessor {
 
+	public function initializeFromSpec( array $spec ): static {
+		parent::initializeFromSpec( $spec );
+		$this->setDefaultValue( $spec['default'] ?? '' );
+		return $this;
+	}
+
 	/**
 	 * @inheritDoc
 	 */
@@ -14,6 +20,9 @@ class StringValue extends GenericProcessor {
 		$parentStatus = parent::process( $value, $fieldKey );
 		if ( !$parentStatus->isGood() ) {
 			return $parentStatus;
+		}
+		if ( !$this->isRequired() && $value === null ) {
+			return StatusValue::newGood( $this->getDefaultValue() );
 		}
 		if ( !is_string( $value ) ) {
 			return StatusValue::newFatal( 'inputprocessor-error-string-not-string', $fieldKey, $value );

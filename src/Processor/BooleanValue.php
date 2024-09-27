@@ -15,6 +15,9 @@ class BooleanValue extends GenericProcessor {
 		if ( !$parentStatus->isGood() ) {
 			return $parentStatus;
 		}
+		if ( !$this->isRequired() && $value === null ) {
+			return StatusValue::newGood( $this->getDefaultValue() );
+		}
 		if ( is_bool( $value ) ) {
 			return StatusValue::newGood( $value );
 		}

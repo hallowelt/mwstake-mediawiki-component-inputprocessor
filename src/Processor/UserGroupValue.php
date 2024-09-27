@@ -25,6 +25,9 @@ class UserGroupValue extends StringValue {
 		if ( !$parentStatus->isGood() ) {
 			return $parentStatus;
 		}
+		if ( !$this->isRequired() && $value === null ) {
+			return StatusValue::newGood( $this->getDefaultValue() );
+		}
 		$value = $parentStatus->getValue();
 		$groups = array_merge(
 			$this->userGroupManager->listAllGroups(),

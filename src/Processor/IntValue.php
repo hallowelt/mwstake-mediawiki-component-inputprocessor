@@ -20,6 +20,7 @@ class IntValue extends GenericProcessor {
 		parent::initializeFromSpec( $spec );
 		$this->setMin( $spec['min'] ?? null );
 		$this->setMax( $spec['max'] ?? null );
+		$this->setDefaultValue( $spec['default'] ?? 0 );
 		return $this;
 	}
 
@@ -48,6 +49,9 @@ class IntValue extends GenericProcessor {
 		$parentStatus = parent::process( $value, $fieldKey );
 		if ( !$parentStatus->isGood() ) {
 			return $parentStatus;
+		}
+		if ( !$this->isRequired() && $value === null ) {
+			return StatusValue::newGood( $this->getDefaultValue() );
 		}
 		$number = $this->getNumeric( $value );
 		if ( !$number ) {
