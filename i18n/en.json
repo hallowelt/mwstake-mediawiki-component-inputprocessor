@@ -16,6 +16,6 @@
 	"inputprocessor-error-namespace-not-subject": "Namespace \"$2\" for \"$1\" is not a subject namespace",
 	"inputprocessor-error-namespace-not-allowed": "Namespace \"$2\" for \"$1\" is not allowed",
 	"inputprocessor-error-user-invalid": "Value \"$2\" for \"$1\" is not a valid user",
-	"inputprocessor-error-user-not-exists": "User \"$2\" for \"$1\" must exist",
+	"inputprocessor-error-user-not-exist": "User \"$2\" for \"$1\" must exist",
 	"inputprocessor-error-usergroup-invalid": "Value \"$2\" for \"$1\" is not a valid usergroup"
 }
