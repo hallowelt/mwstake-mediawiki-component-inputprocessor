@@ -68,6 +68,7 @@ class CategoryValue extends TitleValue {
 			'categorylinks',
 			'cl_from',
 			[ 'cl_to' => $title->getDBkey() ],
+			__METHOD__
 		);
 	}
 }
