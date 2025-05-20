@@ -2,9 +2,10 @@
 
 namespace MWStake\MediaWiki\Component\InputProcessor;
 
+use JsonSerializable;
 use StatusValue;
 
-interface IProcessor {
+interface IProcessor extends JsonSerializable {
 
 	/**
 	 *

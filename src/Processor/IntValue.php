@@ -80,4 +80,15 @@ class IntValue extends GenericProcessor {
 	protected function getNumeric( string $value ): ?int {
 		return is_numeric( $value ) ? (int)$value : null;
 	}
+
+	/**
+	 * @return mixed
+	 */
+	public function jsonSerialize(): mixed {
+		return array_merge( parent::jsonSerialize(), [
+			'type' => 'int',
+			'min' => $this->min,
+			'max' => $this->max,
+		] );
+	}
 }

@@ -32,4 +32,13 @@ class BooleanValue extends GenericProcessor {
 
 		return StatusValue::newFatal( 'inputprocessor-error-boolean-not-boolean', $fieldKey, $value );
 	}
+
+	/**
+	 * @return mixed
+	 */
+	public function jsonSerialize(): mixed {
+		return array_merge( parent::jsonSerialize(), [
+			'type' => 'boolean',
+		] );
+	}
 }

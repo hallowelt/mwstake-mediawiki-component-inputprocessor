@@ -67,7 +67,7 @@ class ProcessorFactory {
 			return;
 		}
 		$this->hookContainer->run(
-			'MWStakeMediaWikiComponentInputProcessorRegisterProcessors',
+			'MWStakeInputProcessorRegisterProcessors',
 			[ &$this->registry ]
 		);
 		$this->initialized = true;

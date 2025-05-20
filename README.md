@@ -144,7 +144,7 @@ if ( $status->isGood() ) {
 // Over config var
 $GLOBALS['mwsgInputProcessorRegistry']['my-processor'] = {OF_SPEC};
 
-$GLOBALS['wgHooks']['MWStakeMediaWikiComponentInputProcessorRegisterProcessors'][] = function( &$types ) {
+$GLOBALS['wgHooks']['MWStakeInputProcessorRegisterProcessors'][] = function( &$types ) {
     $types['my-processor'] = {OF_SPEC};
 };
 ```

@@ -27,4 +27,13 @@ class GenericProcessor implements IProcessor {
 		$this->setDefaultValue( $spec['default'] ?? null );
 		return $this;
 	}
+
+	/**
+	 * @return mixed
+	 */
+	public function jsonSerialize(): mixed {
+		return array_merge( [
+			'type' => 'generic',
+		], $this->serializeRequiredSpec() );
+	}
 }

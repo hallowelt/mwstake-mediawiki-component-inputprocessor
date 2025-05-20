@@ -50,4 +50,14 @@ class KeywordValue extends GenericProcessor {
 
 		return StatusValue::newGood( $this->keywords[mb_strtolower( $value )] );
 	}
+
+	/**
+	 * @return mixed
+	 */
+	public function jsonSerialize(): mixed {
+		return array_merge( parent::jsonSerialize(), [
+			'type' => 'int',
+			'keywords' => $this->keywords,
+		] );
+	}
 }

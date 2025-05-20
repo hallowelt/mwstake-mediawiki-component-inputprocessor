@@ -61,4 +61,14 @@ class UserValue extends StringValue {
 
 		return StatusValue::newGood( $user );
 	}
+
+	/**
+	 * @return mixed
+	 */
+	public function jsonSerialize(): mixed {
+		return array_merge( parent::jsonSerialize(), [
+			'type' => 'int',
+			'mustExist' => $this->mustExist,
+		] );
+	}
 }

@@ -135,4 +135,17 @@ class TitleValue extends GenericProcessor {
 	protected function titleExists( Title $title ): bool {
 		return $title->exists();
 	}
+
+	/**
+	 * @return mixed
+	 */
+	public function jsonSerialize(): mixed {
+		return array_merge( parent::jsonSerialize(), [
+			'type' => 'title',
+			'mustExist' => $this->mustExist,
+			'userMustBeAbleToRead' => $this->userMustBeAbleToRead?->getName(),
+			'allowedNamespaces' => $this->allowedNamespaces,
+			'blacklistedNamespaces' => $this->blacklistedNamespaces,
+		] );
+	}
 }

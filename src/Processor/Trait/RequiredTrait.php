@@ -51,4 +51,14 @@ trait RequiredTrait {
 	protected function getDefaultValue(): mixed {
 		return $this->defaultValue;
 	}
+
+	/**
+	 * @return array
+	 */
+	protected function serializeRequiredSpec(): array {
+		return [
+			'required' => $this->isRequired(),
+			'default' => $this->getDefaultValue(),
+		];
+	}
 }

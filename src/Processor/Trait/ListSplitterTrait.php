@@ -74,4 +74,21 @@ trait ListSplitterTrait {
 		}
 		return $status;
 	}
+
+	/**
+	 * @return array
+	 */
+	protected function serializeListSpec(): array {
+		return [
+			'is_list' => true,
+			'separator' => $this->separator,
+		];
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function jsonSerialize(): mixed {
+		return array_merge( parent::jsonSerialize(), $this->serializeListSpec() );
+	}
 }

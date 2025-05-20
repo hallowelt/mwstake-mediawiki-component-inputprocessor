@@ -124,4 +124,16 @@ class NamespaceValue extends GenericProcessor {
 
 		return StatusValue::newGood( $finalNsId );
 	}
+
+	/**
+	 * @return mixed
+	 */
+	public function jsonSerialize(): mixed {
+		return array_merge( parent::jsonSerialize(), [
+			'type' => 'int',
+			'mustBeContent' => $this->mustBeContent,
+			'mustBeSubject' => $this->mustBeSubject,
+			'mustBeTalk' => $this->mustBeTalk,
+		] );
+	}
 }
