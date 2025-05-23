@@ -30,4 +30,13 @@ class StringValue extends GenericProcessor {
 
 		return StatusValue::newGood( $value );
 	}
+
+	/**
+	 * @return mixed
+	 */
+	public function jsonSerialize(): mixed {
+		return array_merge( parent::jsonSerialize(), [
+			'type' => 'string',
+		] );
+	}
 }

@@ -56,7 +56,7 @@ class KeywordValue extends GenericProcessor {
 	 */
 	public function jsonSerialize(): mixed {
 		return array_merge( parent::jsonSerialize(), [
-			'type' => 'int',
+			'type' => 'keyword',
 			'keywords' => $this->keywords,
 		] );
 	}

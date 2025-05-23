@@ -72,7 +72,7 @@ $processors = [
     'myPage' => [
         'type' => 'title',
         'required' => true,
-        'allowedNamespace' => [ NS_MAIN, NS_USER ]
+        'allowedNamespaces' => [ NS_MAIN, NS_USER ]
     ],
     'myNumber' => [
         'type' => 'int',

@@ -130,7 +130,7 @@ class NamespaceValue extends GenericProcessor {
 	 */
 	public function jsonSerialize(): mixed {
 		return array_merge( parent::jsonSerialize(), [
-			'type' => 'int',
+			'type' => 'namespace',
 			'mustBeContent' => $this->mustBeContent,
 			'mustBeSubject' => $this->mustBeSubject,
 			'mustBeTalk' => $this->mustBeTalk,

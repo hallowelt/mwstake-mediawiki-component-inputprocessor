@@ -52,4 +52,13 @@ class UserGroupValue extends StringValue {
 
 		return StatusValue::newGood( $lowercased[$lcValue] ?? $lcValue );
 	}
+
+	/**
+	 * @return mixed
+	 */
+	public function jsonSerialize(): mixed {
+		return array_merge( parent::jsonSerialize(), [
+			'type' => 'user_group',
+		] );
+	}
 }

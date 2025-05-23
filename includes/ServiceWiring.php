@@ -17,7 +17,7 @@ return [
 	'MWStake.InputProcessor' => static function ( MediaWikiServices $services ) {
 		$logger = LoggerFactory::getInstance( 'mwstake-inputprocessor' );
 		return new Runner(
-			$services->get( 'MWStake.InputProcessor.Factory' ),
+			$services->getService( 'MWStake.InputProcessor.Factory' ),
 			$logger
 		);
 	},
