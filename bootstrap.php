@@ -4,7 +4,7 @@ if ( defined( 'MWSTAKE_MEDIAWIKI_COMPONENT_INPUTPROCESSOR_VERSION' ) ) {
 	return;
 }
 
-define( 'MWSTAKE_MEDIAWIKI_COMPONENT_INPUTPROCESSOR_VERSION', '1.1.1' );
+define( 'MWSTAKE_MEDIAWIKI_COMPONENT_INPUTPROCESSOR_VERSION', '1.1.2' );
 
 MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 ->register( 'inputprocessor', static function () {
@@ -72,6 +72,9 @@ MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 		],
 		'string_list' => [
 			'class' => \MWStake\MediaWiki\Component\InputProcessor\Processor\StringListValue::class,
+		],
+		'percent' => [
+			'class' => \MWStake\MediaWiki\Component\InputProcessor\Processor\PercentValue::class,
 		]
 	];
 } );
