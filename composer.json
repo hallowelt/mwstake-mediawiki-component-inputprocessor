@@ -1,5 +1,6 @@
 {
 	"name": "mwstake/mediawiki-component-inputprocessor",
+	"description": "Provides a simple framework for processing user input",
 	"license": "GPL-3.0-only",
 	"authors": [
 		{
