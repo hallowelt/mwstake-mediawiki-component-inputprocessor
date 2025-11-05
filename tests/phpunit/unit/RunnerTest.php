@@ -1,6 +1,6 @@
 <?php
 
-namespace MWStake\MediaWiki\Component\InputProcessor\Tests;
+namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Unit;
 
 use Exception;
 use MediaWiki\HookContainer\HookContainer;

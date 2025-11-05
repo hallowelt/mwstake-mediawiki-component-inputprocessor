@@ -22,7 +22,8 @@
 	"autoload": {
 		"psr-4": {
 			"MWStake\\MediaWiki\\Component\\InputProcessor\\": "src/",
-			"MWStake\\MediaWiki\\Component\\InputProcessor\\Tests\\": "tests/phpunit/"
+			"MWStake\\MediaWiki\\Component\\InputProcessor\\Tests\\Unit\\": "tests/phpunit/unit/",
+			"MWStake\\MediaWiki\\Component\\InputProcessor\\Tests\\Integration\\": "tests/phpunit/integration/"
 		},
 		"files": [
 			"bootstrap.php"
