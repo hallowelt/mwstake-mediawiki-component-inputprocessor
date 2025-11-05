@@ -7,6 +7,9 @@ use MWStake\MediaWiki\Component\InputProcessor\IProcessor;
 use MWStake\MediaWiki\Component\InputProcessor\Processor\UserGroupValue;
 use MWStake\MediaWiki\Component\InputProcessor\Tests\Unit\Processor\ProcessorTestBase;
 
+/**
+ * @covers \MWStake\MediaWiki\Component\InputProcessor\Processor\UserGroupValue
+ */
 class GroupValueTest extends ProcessorTestBase {
 
 	protected function getProcessor( mixed $input ): IProcessor {
