@@ -4,16 +4,16 @@ namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Unit;
 
 use Exception;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWikiUnitTestCase;
 use MWStake\MediaWiki\Component\InputProcessor\GenericProcessor;
 use MWStake\MediaWiki\Component\InputProcessor\Processor\IntValue;
 use MWStake\MediaWiki\Component\InputProcessor\ProcessorFactory;
 use MWStake\MediaWiki\Component\InputProcessor\Runner;
-use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use StatusValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
-class RunnerTest extends TestCase {
+class RunnerTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @return void
