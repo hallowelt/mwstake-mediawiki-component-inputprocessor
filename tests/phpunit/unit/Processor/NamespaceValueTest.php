@@ -1,10 +1,13 @@
 <?php
 
-namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Processor;
+namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Unit\Processor;
 
 use MWStake\MediaWiki\Component\InputProcessor\IProcessor;
 use MWStake\MediaWiki\Component\InputProcessor\Processor\NamespaceValue;
 
+/**
+ * @covers \MWStake\MediaWiki\Component\InputProcessor\Processor\NamespaceValue
+ */
 class NamespaceValueTest extends ProcessorTestBase {
 
 	/**

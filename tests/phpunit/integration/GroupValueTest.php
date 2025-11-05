@@ -1,10 +1,11 @@
 <?php
 
-namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Processor;
+namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Integration\Processor;
 
 use MediaWiki\User\UserGroupManager;
 use MWStake\MediaWiki\Component\InputProcessor\IProcessor;
 use MWStake\MediaWiki\Component\InputProcessor\Processor\UserGroupValue;
+use MWStake\MediaWiki\Component\InputProcessor\Tests\Unit\Processor\ProcessorTestBase;
 
 class GroupValueTest extends ProcessorTestBase {
 

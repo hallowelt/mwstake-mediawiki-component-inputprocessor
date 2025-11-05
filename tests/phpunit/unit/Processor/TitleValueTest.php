@@ -1,6 +1,6 @@
 <?php
 
-namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Processor;
+namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Unit\Processor;
 
 use MediaWiki\Permissions\PermissionManager;
 use MWStake\MediaWiki\Component\InputProcessor\IProcessor;
@@ -10,6 +10,9 @@ use Title;
 use TitleFactory;
 use User;
 
+/**
+ * @covers \MWStake\MediaWiki\Component\InputProcessor\Processor\TitleValue
+ */
 class TitleValueTest extends ProcessorTestBase {
 
 	/**

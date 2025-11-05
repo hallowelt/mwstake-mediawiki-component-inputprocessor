@@ -1,6 +1,6 @@
 <?php
 
-namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Processor;
+namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Unit\Processor;
 
 use MediaWiki\User\UserFactory;
 use MWStake\MediaWiki\Component\InputProcessor\IProcessor;
@@ -8,6 +8,9 @@ use MWStake\MediaWiki\Component\InputProcessor\Processor\UserValue;
 use StatusValue;
 use User;
 
+/**
+ * @covers \MWStake\MediaWiki\Component\InputProcessor\Processor\UserValue
+ */
 class UserValueTest extends ProcessorTestBase {
 
 	protected function getProcessor( mixed $input ): IProcessor {

@@ -1,6 +1,6 @@
 <?php
 
-namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Processor;
+namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Unit\Processor;
 
 use MWStake\MediaWiki\Component\InputProcessor\IProcessor;
 use PHPUnit\Framework\TestCase;
