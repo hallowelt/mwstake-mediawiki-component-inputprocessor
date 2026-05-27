@@ -3,9 +3,9 @@
 namespace MWStake\MediaWiki\Component\InputProcessor\Processor;
 
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Title\Title;
 use MWStake\MediaWiki\Component\InputProcessor\GenericProcessor;
 use StatusValue;
-use Title;
 use TitleFactory;
 use User;
 

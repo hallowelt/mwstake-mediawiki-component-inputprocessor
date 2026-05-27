@@ -3,7 +3,7 @@
 namespace MWStake\MediaWiki\Component\InputProcessor\Processor;
 
 use MediaWiki\Permissions\PermissionManager;
-use Title;
+use MediaWiki\Title\Title;
 use TitleFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
