@@ -2,11 +2,11 @@
 
 namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Unit\Processor;
 
+use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MWStake\MediaWiki\Component\InputProcessor\IProcessor;
 use MWStake\MediaWiki\Component\InputProcessor\Processor\UserValue;
 use StatusValue;
-use User;
 
 /**
  * @covers \MWStake\MediaWiki\Component\InputProcessor\Processor\UserValue

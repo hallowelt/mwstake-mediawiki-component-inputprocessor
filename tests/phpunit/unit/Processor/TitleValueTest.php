@@ -5,10 +5,10 @@ namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Unit\Processor;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\User\User;
 use MWStake\MediaWiki\Component\InputProcessor\IProcessor;
 use MWStake\MediaWiki\Component\InputProcessor\Processor\TitleValue;
 use StatusValue;
-use User;
 
 /**
  * @covers \MWStake\MediaWiki\Component\InputProcessor\Processor\TitleValue
