@@ -3,6 +3,7 @@
 namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Unit\Processor;
 
 use MediaWiki\Language\Language;
+use MediaWiki\Title\NamespaceInfo;
 use MWStake\MediaWiki\Component\InputProcessor\IProcessor;
 use MWStake\MediaWiki\Component\InputProcessor\Processor\NamespaceValue;
 
@@ -22,7 +23,7 @@ class NamespaceValueTest extends ProcessorTestBase {
 			'Help' => NS_HELP,
 			'Help_talk' => NS_HELP_TALK
 		];
-		$nsInfo = $this->createMock( \NamespaceInfo::class );
+		$nsInfo = $this->createMock( NamespaceInfo::class );
 		$nsInfo->method( 'getValidNamespaces' )->willReturn( array_values( $namespaces ) );
 		$nsInfo->method( 'getCanonicalIndex' )->willReturnCallback( static function ( $ns ) use ( $namespaces ) {
 			return $namespaces[$ns] ?? null;
