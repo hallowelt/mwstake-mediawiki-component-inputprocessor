@@ -2,6 +2,7 @@
 
 namespace MWStake\MediaWiki\Component\InputProcessor\Tests\Unit\Processor;
 
+use MediaWiki\Language\Language;
 use MWStake\MediaWiki\Component\InputProcessor\IProcessor;
 use MWStake\MediaWiki\Component\InputProcessor\Processor\NamespaceValue;
 
@@ -35,7 +36,7 @@ class NamespaceValueTest extends ProcessorTestBase {
 		$nsInfo->method( 'isTalk' )->willReturnCallback( static function ( $ns ) {
 			return $ns === 1;
 		} );
-		return new NamespaceValue( $nsInfo, $this->createMock( \Language::class ) );
+		return new NamespaceValue( $nsInfo, $this->createMock( Language::class ) );
 	}
 
 	/**

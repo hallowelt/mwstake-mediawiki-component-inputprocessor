@@ -2,7 +2,7 @@
 
 namespace MWStake\MediaWiki\Component\InputProcessor\Processor;
 
-use Language;
+use MediaWiki\Language\Language;
 use MWStake\MediaWiki\Component\InputProcessor\GenericProcessor;
 use NamespaceInfo;
 use StatusValue;
