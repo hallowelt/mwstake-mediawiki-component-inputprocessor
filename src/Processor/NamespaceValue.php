@@ -2,9 +2,9 @@
 
 namespace MWStake\MediaWiki\Component\InputProcessor\Processor;
 
-use Language;
+use MediaWiki\Language\Language;
+use MediaWiki\Title\NamespaceInfo;
 use MWStake\MediaWiki\Component\InputProcessor\GenericProcessor;
-use NamespaceInfo;
 use StatusValue;
 
 class NamespaceValue extends GenericProcessor {
