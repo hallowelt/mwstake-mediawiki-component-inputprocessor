@@ -80,8 +80,12 @@ class NamespaceValue extends GenericProcessor {
 		if ( !$parentStatus->isGood() ) {
 			return $parentStatus;
 		}
+
 		$finalNsId = null;
 		$valid = $this->namespaceInfo->getValidNamespaces();
+		if ( ( $value === null || $value === '' ) && $this->defaultValue !== null ) {
+			$value = $this->defaultValue;
+		}
 		if ( is_numeric( $value ) ) {
 			$ns = (int)$value;
 			if ( in_array( $ns, $valid ) ) {
