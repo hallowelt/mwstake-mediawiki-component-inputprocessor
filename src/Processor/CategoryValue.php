@@ -70,10 +70,20 @@ class CategoryValue extends TitleValue {
 	 */
 	protected function titleExists( Title $title ): bool {
 		return $title->exists() || (bool)$this->lb->getConnection( DB_REPLICA )->selectField(
-			'categorylinks',
+			[ 'categorylinks', 'linktarget' ],
 			'cl_from',
-			[ 'cl_to' => $title->getDBkey() ],
-			__METHOD__
+			[
+				'lt_namespace' => NS_CATEGORY,
+				'lt_title' => $title->getDBkey()
+			],
+			__METHOD__,
+			[],
+			[
+				'linktarget' => [
+					'INNER JOIN',
+					'cl_target_id = lt_id',
+				],
+			]
 		);
 	}
 
